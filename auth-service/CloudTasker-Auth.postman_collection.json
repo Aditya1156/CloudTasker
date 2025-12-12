@@ -1,0 +1,141 @@
+{
+  "info": {
+    "name": "CloudTasker - Auth Service",
+    "description": "Complete Auth Service API testing collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4001/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4001",
+          "path": ["health"]
+        },
+        "description": "Check if Auth Service is running"
+      }
+    },
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Aditya Kumar\",\n  \"email\": \"aditya@example.com\",\n  \"password\": \"123456\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4001/auth/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4001",
+          "path": ["auth", "register"]
+        },
+        "description": "Register a new user"
+      }
+    },
+    {
+      "name": "Login User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"aditya@example.com\",\n  \"password\": \"123456\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4001/auth/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4001",
+          "path": ["auth", "login"]
+        },
+        "description": "Login and get JWT token"
+      }
+    },
+    {
+      "name": "Get Current User",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer YOUR_TOKEN_HERE",
+            "description": "Replace with actual token from login"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:4001/auth/me",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4001",
+          "path": ["auth", "me"]
+        },
+        "description": "Get current authenticated user (protected route)"
+      }
+    },
+    {
+      "name": "Register - Duplicate Email",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Another User\",\n  \"email\": \"aditya@example.com\",\n  \"password\": \"654321\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4001/auth/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4001",
+          "path": ["auth", "register"]
+        },
+        "description": "Test duplicate email error"
+      }
+    },
+    {
+      "name": "Login - Wrong Password",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"aditya@example.com\",\n  \"password\": \"wrongpassword\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4001/auth/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4001",
+          "path": ["auth", "login"]
+        },
+        "description": "Test invalid password error"
+      }
+    }
+  ]
+}
